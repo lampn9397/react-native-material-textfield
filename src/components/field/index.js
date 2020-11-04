@@ -55,6 +55,7 @@ export default class TextField extends PureComponent {
 
     errorColor: 'rgb(213, 0, 0)',
 
+    borderRadius: 4,
     lineWidth: StyleSheet.hairlineWidth,
     activeLineWidth: 2,
     disabledLineWidth: 1,
@@ -101,6 +102,7 @@ export default class TextField extends PureComponent {
     errorColor: PropTypes.string,
 
     lineWidth: PropTypes.number,
+    borderRadius: PropTypes.number,
     activeLineWidth: PropTypes.number,
     disabledLineWidth: PropTypes.number,
 

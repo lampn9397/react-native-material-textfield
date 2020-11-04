@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React, { Fragment, PureComponent } from 'react';
 import { View, Animated, I18nManager } from 'react-native';
 
-import styles, { borderRadius } from './styles';
+import styles from './styles';
 
 export default class Line extends PureComponent {
   static defaultProps = {
     lineType: 'solid',
     disabled: false,
     restricted: false,
+    borderRadius: 4,
   };
 
   static propTypes = {
@@ -79,7 +80,7 @@ export default class Line extends PureComponent {
   }
 
   render() {
-    let { lineType, labelWidth, labelAnimation, contentInset } = this.props;
+    let { lineType, labelWidth, labelAnimation, contentInset, borderRadius } = this.props;
 
     if ('none' === lineType) {
       return null;
@@ -90,7 +91,7 @@ export default class Line extends PureComponent {
 
     let topLineContainerStyle = {
       transform: [{
-        scaleX: I18nManager.isRTL? -1 : 1,
+        scaleX: I18nManager.isRTL ? -1 : 1,
       }, {
         translateX: Animated.multiply(labelAnimation, lineOffset),
       }],
@@ -113,22 +114,22 @@ export default class Line extends PureComponent {
 
     return (
       <Fragment>
-        <View style={[styles.topContainer, topContainerStyle]} pointerEvents='none'>
-          <Animated.View style={[styles.topLineContainer, topLineContainerStyle]}>
-            <Animated.View style={[styles.borderTop, lineStyle]} />
+        <View style={[styles(borderRadius).topContainer, topContainerStyle]} pointerEvents='none'>
+          <Animated.View style={[styles(borderRadius).topLineContainer, topLineContainerStyle]}>
+            <Animated.View style={[styles(borderRadius).borderTop, lineStyle]} />
           </Animated.View>
         </View>
 
-        <View style={[styles.rightContainer, rightContainerStyle]} pointerEvents='none'>
-          <Animated.View style={[styles.borderRight, lineStyle]} />
+        <View style={[styles(borderRadius).rightContainer, rightContainerStyle]} pointerEvents='none'>
+          <Animated.View style={[styles(borderRadius).borderRight, lineStyle]} />
         </View>
 
-        <View style={styles.bottomContainer} pointerEvents='none'>
-          <Animated.View style={[styles.borderBottom, lineStyle]} />
+        <View style={styles(borderRadius).bottomContainer} pointerEvents='none'>
+          <Animated.View style={[styles(borderRadius).borderBottom, lineStyle]} />
         </View>
 
-        <View style={[styles.leftContainer, leftContainerStyle]} pointerEvents='none'>
-          <Animated.View style={[styles.borderLeft, lineStyle]} />
+        <View style={[styles(borderRadius).leftContainer, leftContainerStyle]} pointerEvents='none'>
+          <Animated.View style={[styles(borderRadius).borderLeft, lineStyle]} />
         </View>
       </Fragment>
     );
